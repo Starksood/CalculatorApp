@@ -1,4 +1,4 @@
-public class AdvanceCalc<N extends Number> extends MemoryCalc<N> implements AdvanceMath<N>{
+public class AdvanceCalc<N extends Number> extends MemoryCalc implements AdvanceMath<N>{
 
 
     public int precisionValue;
