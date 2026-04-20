@@ -1,10 +1,10 @@
 /**
- * Extends {@link Calculator} with memory storage operations (M+, M-, MC, MR).
- * Memory operations display the current memory value after each change.
- *
+ * Extends {@link Calculator} with memory storage operations. *
+ * 
  * @param <N> a numeric type extending {@link Number}
- * @author [Your Full Name]
- * @see <a href="https://github.com/[your-repo]">GitHub Repository</a>
+ * @author Sanyam Sood
+ * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub
+ *      Repository</a>
  */
 public class MemoryCalc<N extends Number> extends Calculator<N> {
 
@@ -28,7 +28,8 @@ public class MemoryCalc<N extends Number> extends Calculator<N> {
     }
 
     /**
-     * Adds the current calculator value to memory and displays the updated memory value.
+     * Adds the current calculator value to memory and displays the updated memory
+     * value.
      */
     public void memoryAdd() {
         memoryValue += currentValue;
@@ -36,7 +37,8 @@ public class MemoryCalc<N extends Number> extends Calculator<N> {
     }
 
     /**
-     * Subtracts the current calculator value from memory and displays the updated memory value.
+     * Subtracts the current calculator value from memory and displays the updated
+     * memory value.
      */
     public void memorySubtract() {
         memoryValue -= currentValue;
@@ -60,8 +62,8 @@ public class MemoryCalc<N extends Number> extends Calculator<N> {
      * @param phrase the label to display alongside the memory value
      */
     public void displayMemoryValue(String phrase) {
-        String fmt = "%-16s%," + (precision + 10) + "." + precision + "f%n";
-        System.out.printf(fmt, phrase, memoryValue);
+        String fmt = "%-16s%," + (precision) + "." + precision + "f%n";
+        System.out.printf(phrase, memoryValue);
     }
 
     /**

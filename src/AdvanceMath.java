@@ -2,8 +2,8 @@
  * Interface defining advanced math operations for a calculator.
  *
  * @param <N> a numeric type extending {@link Number}
- * @author [Your Full Name]
- * @see <a href="https://github.com/[your-repo]">GitHub Repository</a>
+ * @author Sanyam Sood
+ * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub Repository</a>
  */
 public interface AdvanceMath<N extends Number> {
 

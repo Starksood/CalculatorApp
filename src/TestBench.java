@@ -3,16 +3,11 @@
  * Exercises basic arithmetic, memory operations, and advanced math
  * to verify correct output at each stage.
  *
- * @author [Your Full Name]
- * @see <a href="https://github.com/[your-repo]">GitHub Repository</a>
+ * @author Sanyam Sood
+ * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub
+ *      Repository</a>
  */
 public class TestBench {
-
-    /**
-     * Entry point. Creates an {@link AdvanceCalc} and runs through all features.
-     *
-     * @param args command-line arguments (not used)
-     */
     public static void main(String[] args) {
 
         // Create calculator — prints "Calculator On" and sets precision to 2
@@ -43,10 +38,6 @@ public class TestBench {
         // --- Advanced operations ---
         calculator.pow(2.0);
         calculator.sqrt();
-
-        // --- Recall memory value and add ---
-        double mem = calculator.getMemoryValue();
-        calculator.add(mem);
 
         // --- Clear memory then calculator ---
         calculator.memoryClear();
