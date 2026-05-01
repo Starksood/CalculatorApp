@@ -1,5 +1,5 @@
 /**
- * Abstract base class for a generic calculator that implements basic
+ * Abstract base class for the generic calculator that implements basic
  * arithmetic.
  *
  * @param <N> a numeric type extending {@link Number}
@@ -12,11 +12,11 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
     /** The value before the last operation. */
     protected double previousValue;
 
-    /** The running result of all operations. */
-    protected double currentValue;
-
     /** The last input value supplied to an operation. */
     protected double inputValue;
+
+    /** The running result of all operations. */
+    protected double currentValue;
 
     /** The last operator used ('+', '-', '*', '/', '^', 'r'). */
     protected char operator;
@@ -26,13 +26,9 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
      * precision to 2, and prints "Calculator On".
      */
     public Calculator() {
-        previousValue = 0;
-        inputValue    = 0;
-        currentValue  = 0;
-        operator      = '+';
         System.out.println("Calculator On");
-    }-----------------------------------------------------------------------
-
+        clear();
+    }
     /**
      * Adds the given value to the current value and updates the display.
      *
@@ -40,10 +36,12 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
      */
     @Override
     public void add(N inputValue) {
+        operator         = '+';
         previousValue    = currentValue;
         this.inputValue  = inputValue.doubleValue();
-        currentValue    += inputValue.doubleValue();
-        operator         = '+';
+        currentValue    += this.inputValue;
+        updateDisplay();
+
     }
 
     /**
@@ -53,10 +51,12 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
      */
     @Override
     public void subtract(N inputValue) {
+        operator = '-';
         previousValue = currentValue;
         this.inputValue = inputValue.doubleValue();
-        currentValue -= inputValue.doubleValue();
-        operator = '-';
+        currentValue -= this.inputValue;
+        updateDisplay();
+
     }
 
     /**
@@ -66,10 +66,11 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
      */
     @Override
     public void multiply(N inputValue) {
+        operator = '*';
         previousValue = currentValue;
         this.inputValue = inputValue.doubleValue();
-        currentValue *= inputValue.doubleValue();
-        operator = '*';
+        currentValue *= this.inputValue;
+        updateDisplay();
     }
 
     /**
@@ -80,12 +81,12 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
      */
     @Override
     public void divide(N inputValue) {
+        operator        = '/';
         previousValue   = currentValue;
         this.inputValue = inputValue.doubleValue();
-        operator        = '/';
-        currentValue /= inputValue.doubleValue();
-    }-----------------------------------------------------------------------
-
+        currentValue /= this.inputValue;
+        updateDisplay();
+    }
     /**
      * Clears all numeric fields (currentValue, previousValue, inputValue) to zero,
      * resets the operator to '+', and prints "Calculator Cleared".
@@ -98,10 +99,17 @@ public abstract class Calculator<N extends Number> implements BasicMath<N> {
         System.out.println("\nCalculator Cleared");
     }
 
-    public void displayValue() {
-        System.out.println("Previous Value: " + previousValue);
-        System.out.println("Current Value: " + currentValue);
-        System.out.println("Input Value: " + inputValue);
-        System.out.println("Operator: " + operator);
+    /**
+     * Displays the current calculation in a formatted layout showing
+     * the previous value, operator, input value, and current result.
+     * Output is formatted with 2 decimal places and thousand separators.
+     */
+    public void updateDisplay() {
+        System.out.println();
+        System.out.printf(" %,12.2f%n",  previousValue);
+        System.out.printf("%1s%,12.2f%n", operator, inputValue);
+        System.out.println("=============");
+        System.out.printf(" %,12.2f%n", currentValue);
+        System.out.println();
     }
 }

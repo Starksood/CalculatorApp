@@ -1,9 +1,11 @@
 /**
  * Interface defining basic arithmetic operations for a calculator.
+ * Defines a generic type that extends Number to ensure only numeric types are accepted.
  *
  * @param <N> a numeric type extending {@link Number}
  * @author Sanyam Sood
- * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub Repository</a>
+ * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub
+ *      Repository</a>
  */
 public interface BasicMath<N extends Number> {
 

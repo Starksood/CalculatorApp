@@ -8,40 +8,33 @@
  *      Repository</a>
  */
 public class TestBench {
+    /**
+     * Main method that tests the AdvanceCalc calculator functionality.
+     * Performs a sequence of operations including:
+     * <ul>
+     *   <li>Basic arithmetic (add, subtract, multiply, divide)</li>
+     *   <li>Memory operations (memoryAdd, memorySubtract, memoryClear)</li>
+     *   <li>Advanced operations (power, square root)</li>
+     *   <li>Precision configuration</li>
+     * </ul>
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
+        AdvanceCalc advCalc = new AdvanceCalc();
+        advCalc.add(10.22);
+        advCalc.subtract(5);
+        advCalc.memoryAdd();
+        advCalc.multiply(3);
+        advCalc.memorySubtract();
+        advCalc.divide(4);
+        advCalc.setPrecision(4);
+        advCalc.pow(2);
+        advCalc.sqrt();
+        advCalc.add(advCalc.getMemoryValue());
+        advCalc.memoryClear();
+        advCalc.clear();
 
-        // Create calculator — prints "Calculator On" and sets precision to 2
-        AdvanceCalc<Double> calculator = new AdvanceCalc<>();
 
-        System.out.println("Calculator Cleared");
-
-        // --- Basic operations at precision 2 ---
-        calculator.add(10.22);
-        calculator.subtract(2.22);
-
-        // Memory Add after result is 8.00
-        calculator.memoryAdd();
-        System.out.println();
-
-        calculator.multiply(10.00);
-
-        // Memory Subtract after result is 80.00
-        calculator.memorySubtract();
-        System.out.println();
-
-        calculator.divide(2.00);
-
-        // --- Switch to precision 4 ---
-        calculator.setPrecisionValue(4);
-        System.out.println();
-
-        // --- Advanced operations ---
-        calculator.pow(2.0);
-        calculator.sqrt();
-
-        // --- Clear memory then calculator ---
-        calculator.memoryClear();
-        System.out.println();
-        calculator.clear();
     }
 }

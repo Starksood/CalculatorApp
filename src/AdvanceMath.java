@@ -3,7 +3,8 @@
  *
  * @param <N> a numeric type extending {@link Number}
  * @author Sanyam Sood
- * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub Repository</a>
+ * @see <a href="https://github.com/Starksood/CalculatorApp">GitHub
+ *      Repository</a>
  */
 public interface AdvanceMath<N extends Number> {
 

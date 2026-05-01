@@ -16,7 +16,7 @@ public class MemoryCalc<N extends Number> extends Calculator<N> {
      */
     public MemoryCalc() {
         super();
-        memoryValue = 0;
+        memoryClear();
     }
 
     /**
@@ -24,7 +24,7 @@ public class MemoryCalc<N extends Number> extends Calculator<N> {
      */
     public void memoryClear() {
         memoryValue = 0;
-        displayMemoryValue("Memory Cleared");
+        displayMemoryValue("Memory Clear");
     }
 
     /**
@@ -62,14 +62,6 @@ public class MemoryCalc<N extends Number> extends Calculator<N> {
      * @param phrase the label to display alongside the memory value
      */
     public void displayMemoryValue(String phrase) {
-        String fmt = "%-16s%," + (precision) + "." + precision + "f%n";
-        System.out.printf(phrase, memoryValue);
-    }
-
-    /**
-     * Displays the memory value with the default label "Memory Value".
-     */
-    public void displayMemoryValue() {
-        displayMemoryValue("Memory Value");
+        System.out.printf("%-15s %,12.2f%n", phrase, memoryValue);
     }
 }

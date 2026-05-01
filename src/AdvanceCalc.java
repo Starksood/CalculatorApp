@@ -1,4 +1,7 @@
 /**
+ * Advanced calculator that extends {@link MemoryCalc} with advanced mathematical
+ * operations and configurable precision. Implements {@link AdvanceMath} to provide
+ * power and square root operations.
  *
  * @param <N> a numeric type extending {@link Number}
  * @author Sanyam Sood
@@ -7,59 +10,41 @@
  */
 public class AdvanceCalc<N extends Number> extends MemoryCalc<N> implements AdvanceMath<N> {
 
+    /** The number of decimal places for display formatting (0-10). */
+    protected int precision;
+
     /**
-     * Default constructor. Sets precision to 2 decimal places.
+     * Default constructor. Initializes the calculator with a precision of 4 decimal places.
      */
     public AdvanceCalc() {
-        super();
+        setPrecision(4);
     }
 
     /**
-     * Constructor that sets a custom precision value.
+     * Sets the display precision for calculation results.
      *
-     * @param precisionValue the number of decimal places (0–10)
+     * @param precision the number of decimal places to display (must be between 0 and 10)
+     * @throws IllegalArgumentException if precision is less than 0 or greater than 10
      */
-    public AdvanceCalc(int precisionValue) {
-        super();
-        setPrecisionValue(precisionValue);
+    public void setPrecision(int precision) {
+        if (precision < 0 || precision > 10)
+            throw new IllegalArgumentException("Precision must be between 0 and 10");
+        this.precision = precision;
+        System.out.println("Calculator Precision is " + precision + " decimal places.");
     }
 
-    /**
-     * Sets the display precision. Only values between 0 and 10 (inclusive) are
-     * accepted;
-     * values outside this range are silently ignored.
-     * Prints a message confirming the new precision.
-     *
-     * @param precisionValue the desired number of decimal places (0–10)
-     */
-    public void setPrecisionValue(int precisionValue) {
-        this.precision = precisionValue;
-    }
+
 
     /**
-     * Returns the current precision setting.
-     *
-     * @return the number of decimal places used for display
-     */
-    public int getPrecisionValue() {
-        return precision;
-    }
-
-    // -------------------------------------------------------------------------
-    // AdvanceMath interface implementation
-    // -------------------------------------------------------------------------
-
-    /**
-     * Takes the square root of the current value and updates the display.
-     * Prints an error and returns without changing the value if currentValue is
-     * negative.
+     * Calculates the square root of the current value and updates the display.
+     * Uses the square root symbol (√) as the operator.
      */
     @Override
     public void sqrt() {
+        operator = '\u221A';
         previousValue = currentValue;
         inputValue = 0.0;
-        currentValue = Math.sqrt(currentValue);
-        operator = 'r';
+        currentValue = Math.sqrt(this.currentValue);
         updateDisplay();
     }
 
@@ -71,25 +56,31 @@ public class AdvanceCalc<N extends Number> extends MemoryCalc<N> implements Adva
      */
     @Override
     public void pow(N inputValue) {
+        operator = '^';
         previousValue = currentValue;
         this.inputValue = inputValue.doubleValue();
-        currentValue = Math.pow(currentValue, inputValue.doubleValue());
-        operator = '^';
+        currentValue = Math.pow(this.currentValue, this.inputValue);
         updateDisplay();
     }
-
-    // -------------------------------------------------------------------------
-    // Display overrides
-    // -------------------------------------------------------------------------
-
     /**
-     * Prints the last operation and result formatted to the current precision,
-     * using a sqrt symbol for the 'r' operator.
+     * Displays the current calculation in a formatted layout with configurable precision.
+     * Shows the previous value, operator, input value, and current result.
+     * Special formatting is applied for the square root operator (√).
+     * Output is formatted with the current precision setting and thousand separators.
      */
     @Override
     public void updateDisplay() {
+        String format1 = " %,12." + precision + "f%n";
+        String format2 = "%1s%,12." + precision + "f%n";
+
+        if (operator == '\u221A') {
+            System.out.printf(format2, operator, previousValue);
+        } else {
+            System.out.printf(format1, previousValue);
+            System.out.printf(format2, operator, inputValue);
+        }
         System.out.println("=============");
-        System.out.printf(currentValue);
+        System.out.printf(format1, currentValue);
         System.out.println();
     }
 
@@ -100,14 +91,8 @@ public class AdvanceCalc<N extends Number> extends MemoryCalc<N> implements Adva
      */
     @Override
     public void displayMemoryValue(String phrase) {
-        System.out.printf(phrase, memoryValue);
+        String format = "%-15s %,12." + precision + "f%n";
+        System.out.printf(format, phrase, memoryValue);
     }
 
-    /**
-     * Displays the memory value with the default label "Memory Value".
-     */
-    @Override
-    public void displayMemoryValue() {
-        displayMemoryValue("Memory Value");
-    }
 }
