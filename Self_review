@@ -1,0 +1,3 @@
+This app was a challenge to implement, I had missed a day at the beginning and the part where Debbie said we were gonna use No user interface, just a test-bench as coded in the document. So when I tried working with it, I strayed way off trying to make things work like the Mario Game app. Eventually I wasn't able to make it work so I finally re-did the whole thing and followed Debbie's lectures one by one. Eventually got it working. 
+Learned how to write an abstract class and implement interfaces. 
+Learned that an interface cannot access fields. 
